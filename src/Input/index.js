@@ -10,6 +10,7 @@ export const ModuleInput = styled.input`
   border: 1px solid  rgba(17,17,17,0.3);
   font-size: 100%;
   line-height: 1.15;
+  font-family: "Open Sans", sans-serif;
   border-radius: 4px;
   color: #111;
   text-overflow: ellipsis;
