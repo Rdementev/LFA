@@ -53,14 +53,13 @@ export default ModuleBreadCrumb
 //
 
 const Container = styled.div`
-    padding: ${({padding}) => padding ? padding : '13px 20px 13px 13px'} ;
-    font-size: ${({fontSize}) => fontSize ? fontSize : '10px'} ;
+    padding: ${({padding}) => padding ? padding : '0'} ;
+    font-size: ${({fontSize}) => fontSize ? fontSize : '12px'} ;
     display: flex;
-    color:  #454573;
+    color:  #111;
+    align-items: center;
     text-transform: uppercase;
-    border: 1px solid #EFF1F4;
     background-color: #fff;
-    max-height: 52px;
     ${({styled}) => styled}
 `;
 const Seporator = styled.div`
@@ -81,7 +80,7 @@ const Link = styled.div`
 `;
 const LastUrl = styled(Link)`
   cursor: ${({isLast}) => isLast ? 'default' : 'pointer'};
-  color: ${({isLast}) => isLast ? '#2A2A52' : '#2A2A52'};
+  color: #111;
   font-weight: ${({isLast}) => isLast ? 'bold' : 'regular'};
 
   &:hover {

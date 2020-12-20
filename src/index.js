@@ -54,13 +54,3 @@ export const ActionButton = (props) => {
                              styled={styled ? styled : false}
                              title={title}/>
 }
-
-
-export const Menu = (props) => {
-  const {onClick, styled = {}, list = [], other = '', activeId} = props
-  return <ModuleMenu onClick={onClick}
-                     activeId={activeId}
-                     styled={styled}
-                     list={list}
-                     other={other}/>
-}

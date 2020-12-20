@@ -1,20 +1,11 @@
-import {ModuleInput} from "../Input";
 import React, {forwardRef} from "react";
 import styled from "styled-components/macro";
-import Done from "./SearchIcon";
 
 
 export const Listing = forwardRef((props) => {
   const {
     list,
-    ListRef,
     styled,
-    placeholder,
-    value,
-    handleBlurInput,
-    setValue,
-    showList,
-    setShowList,
     onSelect,
     displayValue,
   } = props
@@ -32,7 +23,7 @@ export const Listing = forwardRef((props) => {
               return (
                 <ItemBlock styled={styled}
                            onClick={() => {onSelect(elem)}}
-                           isActive={displayValue.id === elem.id}>
+                           isActive={displayValue?.id === elem.id}>
                   {item.icon && <BlockIconItem styled={styled}>
                     {item.icon}
                   </BlockIconItem>}
@@ -47,7 +38,7 @@ export const Listing = forwardRef((props) => {
       }
       return (
         <ItemBlock styled={styled}
-                   isActive={displayValue.id === item.id}
+                   isActive={displayValue?.id === item.id}
                    onClick={() => {onSelect(item)}}>
           {item.icon && <BlockIconItem styled={styled}>
             {item.icon}
@@ -60,71 +51,10 @@ export const Listing = forwardRef((props) => {
     })
   }
 
-  return (
-    <List styled={styled}>
-      <BlockInput styled={styled}>
-        <ModuleInput placeholder={placeholder}
-                     styled={{padding: '10px 40px 10px 10px'}}
-                     value={value}
-                     onBlur={(e)=>{handleBlurInput()}}
-                     onChange={(e) => {setValue(e.target.value)}}/>
-        <BlockIconInput styled={styled}
-                        showList={showList}
-                        onClick={(e) => { setShowList(!showList)}}>
-          <IconArrow />
-        </BlockIconInput>
-      </BlockInput>
-      <Suggestion ref={ListRef} styled={styled}>
-        {getSuggestionsSoloList(list, styled)}
-      </Suggestion>
-    </List>
-  )
+  return getSuggestionsSoloList(list, styled)
 })
 
 //
-const IconArrow = styled(Done)`
-  width: 10px;
-  height: 10px;
-`;
-const BlockInput = styled.div`
-  position: relative;
-  height: 36px;
-  ${({styled}) => styled && styled.blockInput ? styled.blockInput  : ''}
-`;
-const BlockIcon = styled.div`
-  display: flex;
-  max-width: 30px;
-  margin-left: auto;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-
-  & > ${IconArrow} {
-    width: 10px;
-    height: 10px;
-  }
-
-  & > svg {
-    margin: auto;
-    transform: ${({showList}) => showList ? 'rotate(180deg)' : 'none'} ;
-
-
-  }
-  & > svg > path {
-    fill: rgb(17 17 17 / 0.3);;
-    z-index: 1;
-  }
-  ${({styled}) => styled && styled.blockIcon ? styled.blockIcon : ''}
-
-`;
-const BlockIconInput = styled(BlockIcon)`
-  position: absolute;
-  top: 0;
-  right: 10px;
-  transition: ease 0.3s;
-
-  ${({styled}) => styled && styled.blockIconInput ? styled.blockIconInput  : ''}
-`;
 const BlockIconItem = styled.div`
   width: 15px ;
   height: 15px;
@@ -138,24 +68,6 @@ const BlockIconItem = styled.div`
     margin: auto;
   }
   ${({styled}) => styled && styled.blockIconItem ? styled.blockIconItem  : ''}
-`;
-const List = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  ${({styled}) => styled && styled.list ? styled.list  : ''}
-`;
-const Suggestion = styled.div`
-  width: 100%;
-  top: 130%;
-  padding: 10px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
-  border-radius: 5px;
-  position: absolute;
-  z-index: 1;
-  line-height: 13px;
-  background: #fff;
-  ${({styled}) => styled && styled.suggestion ? styled.suggestion : ''}
 `;
 const Group = styled.div`
   ${({styled}) => styled && styled.group ? styled.group : ''}

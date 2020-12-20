@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 
-import {BreadCrumb, SelectSearch, SearchBlock, ActionButton, HorizontMenu, Menu} from 'libar'
 import {compose} from "redux";
 import {BrowserRouter, NavLink, Route, Switch, withRouter} from "react-router-dom";
 import styled from 'styled-components/macro'
 import Select from "./components/select";
+import BreadcrumbContainer from "./components/breadcrumb";
 
 
 const App = (props) => {
@@ -19,21 +19,7 @@ const App = (props) => {
   }
 
   const a = 'test'
-  const breadcrumb = [
-    {
-      title: 'запросы',
-      link: '/serves',
-    },
-    {
-      title: 'запрос запросов',
-      link: '/serves/create-document',
-    },
-    {
-      title: `${a}`,
-      link: '/123213213',
-    },
 
-  ]
   const styleList = {
     list: {
 
@@ -183,6 +169,7 @@ const App = (props) => {
           <Offer>
             <Route exact path={'/action_button'} render={()=> <div>123</div>}/>
             <Route exact path={'/select'} render={()=> <Select/>}/>
+            <Route exact path={'/bread_crumb'} render={()=> <BreadcrumbContainer/>}/>
 
 
           </Offer>
