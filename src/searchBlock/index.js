@@ -62,26 +62,19 @@ const ModuleSearchBlock = (props) => {
 }
 export default ModuleSearchBlock
 //
-
 const Container = styled.div`
 position: relative;
 height: 100%;
   ${({styled}) => styled}
 `;
 const BlockIconClear = styled.div`
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background: #ffbcbc;
     border-radius: 50%;
-    border: 1px solid #fff;
+    display: flex;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
-
     &:hover {
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-    & > svg {
-        margin: auto;
+        box-shadow: 0 0 1px 1px #111;
     }
   ${({styled}) => styled}
 
@@ -106,17 +99,15 @@ const BlockEnter = styled.div`
   bottom: 0;
   display: flex;
   align-items: center;
-  border-left: 1px solid #3857ae;
   ${({styled}) => styled}
 `;
 const BlockEnterText = styled.div`
-    font-size: 10px;
+    font-size: 12px;
     margin-right: 5px;
-    color: #fff;
-  ${({styled}) => styled}
+    color: #111;
+    ${({styled}) => styled}
 `;
 const BlockEnterIcon = styled.div`
-
   width: 7px;
   height: 7px;
   & > svg {

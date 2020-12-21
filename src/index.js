@@ -15,11 +15,18 @@ export const BreadCrumb = (props) => {
                            onClick={onClick}/>
 }
 export const Select = (props) => {
-  const {list = [], type='simple', placeholder = 'Поиск', onSelect, styled, value = {id:1, text: 'text'}, name = 'test'} = props
+  const {list = [],
+    type='simple',
+    placeholder = 'Поиск',
+    onSelect = () => {},
+    styled = {},
+    defaultValue = {},
+    value = {id:1, text: 'text'}, name = 'test'} = props
   return <ModuleSelectSearch list={list}
                              styled={styled}
                              displayValue={value}
                              onSelect={onSelect}
+                             defaultValue={defaultValue}
                              name={name}
                              type={type}
                              placeholder={placeholder}/>

@@ -16,7 +16,7 @@ const ModuleBreadCrumb = (props) => {
         {list.map((item, i)=> {
           if(i === list.length - 1){
             return (
-              <LastUrlBlock styled={styled && styled.lastUrlBlock}>
+              <LastUrlBlock key={item.id} styled={styled && styled.lastUrlBlock}>
                 <LastUrl styled={styled && styled.lastItem ? styled.lastItem : ''} isLast={true}>{item.title}</LastUrl>
                 <LastUrlIcon styled={styled && styled.lastUrlIcon}>
                   {item.icon}
@@ -27,7 +27,7 @@ const ModuleBreadCrumb = (props) => {
           }
           else if(item.link){
             return (
-              <Fragment>
+              <Fragment key={item.id}>
                 <LinkBlock styled={styled && styled.linkBlock}>
                   <Link styled={styled && styled.item ? styled.item : ''} onClick={(e)=>{onClick(item.link)}}>{item.title}</Link>
                   <LinkIcon styled={styled && styled.linkBlockIcon}>{item.icon}</LinkIcon>

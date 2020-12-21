@@ -16,22 +16,15 @@ const Simple = (props) => {
   } = props
 
   const [showList, setShowList] = useState(false)
-  const [value, setValue] = useState('')
   const ListRef = useRef(null)
   const SearchRef = useRef(null)
 
   useEffect(() => {
-    setValue(displayValue.text)
     document.addEventListener('click', handleClickOutSide, false)
     return function () {
       document.removeEventListener('click', handleClickOutSide, false)
     }
   }, [])
-
-
-  useEffect(() => {
-    if (displayValue) setValue(displayValue.text)
-  }, [displayValue])
 
   const handleClickOutSide = (e) => {
     const item = SearchRef.current
@@ -47,9 +40,7 @@ const Simple = (props) => {
     onSelect(item, name)
   }
   const handleBlurInput = () => {
-    const id = shortId.generate()
-    const data = value ? {id: id, text: value} : list[0]
-    onSelect(data, name)
+    onSelect(list[0], name)
   }
 
 
@@ -69,9 +60,9 @@ const Simple = (props) => {
         <BlockInput styled={styled}>
           <ModuleInput placeholder={placeholder}
                        styled={{padding: '10px 40px 10px 10px'}}
-                       value={value}
-                       onBlur={(e)=>{handleBlurInput()}}
-                       onChange={(e) => {setValue(e.target.value)}}/>
+                       value={displayValue.text}
+                       disabled={true}
+                       onBlur={(e)=>{handleBlurInput()}}/>
           <BlockIconInput styled={styled}
                           showList={showList}
                           onClick={(e) => { setShowList(!showList)}}>

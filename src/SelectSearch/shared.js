@@ -56,8 +56,9 @@ export const Listing = forwardRef((props) => {
 
 //
 const BlockIconItem = styled.div`
-  width: 15px ;
-  height: 15px;
+  min-width: 20px ;
+  max-width: 20px;
+  height: 20px;
   display: flex;
   padding: 0;
   overflow: hidden;
@@ -84,7 +85,7 @@ const ItemName = styled.li`
   cursor: pointer;
   text-overflow: ellipsis;
   overflow: hidden;
-    ${({styled}) => styled && styled.itemName ? styled.itemName : ''};
+  ${({styled}) => styled && styled.itemName ? styled.itemName : ''};
 `;
 const ItemBlock = styled.div`
   font-size: 12px;
