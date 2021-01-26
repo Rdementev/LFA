@@ -204,6 +204,7 @@ const Suggestion = styled.div`
   position: absolute;
   z-index: 1;
   line-height: 13px;
+  background: #fff;
   ${({styled}) => styled && styled.suggestion ? styled.suggestion : ''}
 `;
 

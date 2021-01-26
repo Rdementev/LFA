@@ -5,6 +5,7 @@ import {BrowserRouter, NavLink, Route, Switch, withRouter} from "react-router-do
 import styled from 'styled-components/macro'
 import Select from "./components/select";
 import BreadcrumbContainer from "./components/breadcrumb";
+import TabsContainer from "./components/tabs";
 
 
 const App = (props) => {
@@ -16,135 +17,6 @@ const App = (props) => {
 
   const handleClickLink = (link) => {
     history.push(link)
-  }
-
-  const a = 'test'
-
-  const styleList = {
-    list: {
-
-    },
-    suggestion : {
-      background : '#4361B8',
-      borderRadius: '0',
-      padding: '5px',
-      border: '1px solid #6786DA',
-      margin: '0',
-      top: '89%',
-      borderBottomRightRadius: '4px',
-      borderBottomLeftRadius: '4px',
-      color: 'rgba(255,255,255,0.7)',
-      maxHeight: '120px',
-      overflow: 'scroll',
-    },
-    group : {
-
-    },
-    itemGroup : {
-
-    },
-    blockInput : {},
-
-
-    input: {
-      borderRadius: '4px',
-      height: '32px',
-      backgroundColor: '#4361B8',
-      borderColor: '#6786DA',
-      color: '#fff',
-      "::placeholder" : {
-        color: 'rgba(255,255,255,0.7)'
-      },
-
-      '&:hover': {
-        borderColor: '#6786DA',
-        color: '#fff'
-      },
-      '&:focus': {
-        borderColor: '#6786DA',
-        color: '#fff'
-      }
-    },
-    buttonSelect: {
-      padding: '10px 0 10px 10px',
-    },
-    styledContainer: {
-
-    },
-
-    blockIcon: {
-      height: '32px'
-    },
-    blockIconInput: {
-
-    },
-    itemName : {
-      fontSize: '10px',
-      padding: '6px',
-      borderRadius: '4px',
-      transition: 'ease 0.3s',
-      '&:hover':{
-        color: '#fff',
-        background: 'rgba(255,255,255,0.1)'
-      }
-    },
-  }
-  const styleActionButton = {
-    button : {
-      background: '#2e4c9f',
-      cursor: 'pointer',
-      borderRadius: '4px',
-      border: '1px solid #3857ae',
-      color: '#ffffff'
-    },
-    blockIcon : {
-      backgroundColor: '#516DBE',
-    },
-  }
-  const styleSearchBlock = {
-    input : {
-      height: '32px',
-      borderRadius: '4px',
-      backgroundColor: '#2E4C9F',
-      borderColor: '#3857AD',
-      color: '#fff',
-
-      '::placeholder': {
-        color: 'rgba(255,255,255,0.7)'
-      },
-
-      '&:hover' : {
-        borderColor: '#3857AD',
-        color: '#fff',
-      },
-      '&:focus': {
-        borderColor: '#3857AD',
-        color: '#fff'
-      }
-    }
-  }
-
-  const handleClickItem = (selected, multi) => {
-    if(!multi){
-      setDisplayValue(
-        <DisplayValue>
-          <div>{selected[0].icon}</div>
-          <div>{selected[0].name}</div>
-          <div>{selected[0].value}</div>
-        </DisplayValue>
-      )
-      setInputValue(selected[0].name)
-    }
-  }
-  const handleClickClear = () => {
-      setDisplayValue('Панели')
-      setInputValue('Панели')
-  }
-  const handleClickDelete = () => {
-        alert('и еще другое  действие')
-  }
-  const handleFocus = (value) => {
-    setOnFocus(value)
   }
 
 
@@ -164,12 +36,16 @@ const App = (props) => {
           <Item to={'select'}>
             Select search block
           </Item>
+          <Item to={'tabs'}>
+            Tabs
+          </Item>
         </Sidebar>
         <Switch>
           <Offer>
             <Route exact path={'/action_button'} render={()=> <div>123</div>}/>
             <Route exact path={'/select'} render={()=> <Select/>}/>
             <Route exact path={'/bread_crumb'} render={()=> <BreadcrumbContainer/>}/>
+            <Route exact path={'/tabs'} render={()=> <TabsContainer/>}/>
 
 
           </Offer>

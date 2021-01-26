@@ -6,6 +6,8 @@ import {ModuleInput} from "./Input";
 import ModuleSearchBlock from "./searchBlock";
 import ModuleActionButton from "./actionButton";
 import ModuleMenu from "./menu";
+import * as Tabs from './Tabs'
+
 
 export const BreadCrumb = (props) => {
   const {list = [{title: 'Main', link: '/'}], seporator = '/', onClick, styled} = props
@@ -60,4 +62,7 @@ export const ActionButton = (props) => {
                              action={action}
                              styled={styled ? styled : false}
                              title={title}/>
+}
+export {
+  Tabs
 }
