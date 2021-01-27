@@ -60,7 +60,7 @@ const Simple = (props) => {
         <BlockInput styled={styled}>
           <ModuleInput placeholder={placeholder}
                        styled={{padding: '10px 40px 10px 10px'}}
-                       value={displayValue.text}
+                       value={displayValue?.text || ''}
                        disabled={true}
                        onBlur={(e)=>{handleBlurInput()}}/>
           <BlockIconInput styled={styled}
