@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import styled from 'styled-components/macro'
-import shortId from 'shortid'
 import Done from "./SearchIcon";
+import Dropdown from "./dropDown";
 import {Listing} from "./shared";
 import {ModuleInput} from "../Input";
 
@@ -18,6 +18,7 @@ const Simple = (props) => {
   const [showList, setShowList] = useState(false)
   const ListRef = useRef(null)
   const SearchRef = useRef(null)
+  const innerRef = useRef(null)
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutSide, false)
@@ -46,7 +47,7 @@ const Simple = (props) => {
 
   return (
     <StyledContainer styled={styled} ref={SearchRef}>
-      <ButtonSelect styled={styled} onClick={(e) => {
+      <ButtonSelect ref={innerRef} styled={styled} onClick={(e) => {
         setShowList(!showList)
       }}>
         <ButtonSpan styled={styled}>
@@ -57,7 +58,7 @@ const Simple = (props) => {
         </BlockIcon>
       </ButtonSelect>
       {showList && <List styled={styled}>
-        <BlockInput styled={styled}>
+        <BlockInput styled={styled} >
           <ModuleInput placeholder={placeholder}
                        styled={{padding: '10px 40px 10px 10px'}}
                        value={displayValue?.text || ''}
@@ -69,12 +70,12 @@ const Simple = (props) => {
             <IconArrow />
           </BlockIconInput>
         </BlockInput>
-        <Suggestion ref={ListRef} styled={styled}>
+        <Dropdown ref={innerRef} styled={styled}>
           <Listing list={list}
                    styled={styled}
                    onSelect={handleClickItem}
                    displayValue={displayValue}/>
-        </Suggestion>
+        </Dropdown>
       </List>}
     </StyledContainer>
   )
@@ -156,69 +157,9 @@ const BlockIconInput = styled(BlockIcon)`
 
   ${({styled}) => styled && styled.blockIconInput ? styled.blockIconInput  : ''}
 `;
-const BlockIconItem = styled.div`
-  width: 15px ;
-  height: 15px;
-  display: flex;
-  padding: 0;
-  overflow: hidden;
-  margin-right: 10px;
-  & > * {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-  }
-  ${({styled}) => styled && styled.blockIconItem ? styled.blockIconItem  : ''}
-`;
 const List = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
   ${({styled}) => styled && styled.list ? styled.list  : ''}
-`;
-const Suggestion = styled.div`
-  width: 100%;
-  top: 130%;
-  padding: 10px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
-  border-radius: 5px;
-  position: absolute;
-  z-index: 1;
-  line-height: 13px;
-  background: #fff;
-  ${({styled}) => styled && styled.suggestion ? styled.suggestion : ''}
-`;
-const Group = styled.div`
-  ${({styled}) => styled && styled.group ? styled.group : ''}
-`;
-const ItemGroup = styled.div`
-  padding: 10px;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  ${({styled}) => styled && styled.itemGroup ? styled.itemGroup : ''}
-
-`;
-const ItemName = styled.li`
-  cursor: pointer;
-  text-overflow: ellipsis;
-  overflow: hidden;
-    ${({styled}) => styled && styled.itemName ? styled.itemName : ''};
-`;
-const ItemBlock = styled.div`
-  font-size: 12px;
-  cursor: pointer;
-  text-overflow: ellipsis;
-  padding: 10px 20px 10px 10px;
-  line-height: 13px;
-  display: flex;
-  align-items: center;
-
-  &:hover{
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
-  ${({styled}) => styled && styled.itemBlock ? styled.itemBlock : ''};
-  background-color: ${({isActive}) => isActive ? 'rgba(255,255,255,0.1)' : ''};
-
 `;

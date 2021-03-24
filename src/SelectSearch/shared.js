@@ -2,7 +2,7 @@ import React, {forwardRef} from "react";
 import styled from "styled-components/macro";
 
 
-export const Listing = forwardRef((props) => {
+export const Listing = (props) => {
   const {
     list,
     styled,
@@ -15,25 +15,25 @@ export const Listing = forwardRef((props) => {
     return list.map(item => {
       if (item.type === 'group') {
         return (
-          <Group styled={styled}>
-            <ItemGroup styled={styled}>
-              {item.text}
-            </ItemGroup>
-            {item.items.map(elem => {
-              return (
-                <ItemBlock styled={styled}
-                           onClick={() => {onSelect(elem)}}
-                           isActive={displayValue?.id === elem.id}>
-                  {item.icon && <BlockIconItem styled={styled}>
-                    {item.icon}
-                  </BlockIconItem>}
-                  <ItemName styled={styled}>
-                    {elem.text}
-                  </ItemName>
-                </ItemBlock>
-              )
-            })}
-          </Group>
+            <Group styled={styled}>
+              <ItemGroup styled={styled}>
+                {item.text}
+              </ItemGroup>
+              {item.items.map(elem => {
+                return (
+                  <ItemBlock styled={styled}
+                             onClick={() => {onSelect(elem)}}
+                             isActive={displayValue?.id === elem.id}>
+                    {item.icon && <BlockIconItem styled={styled}>
+                      {item.icon}
+                    </BlockIconItem>}
+                    <ItemName styled={styled}>
+                      {elem.text}
+                    </ItemName>
+                  </ItemBlock>
+                )
+              })}
+            </Group>
         )
       }
       return (
@@ -52,7 +52,7 @@ export const Listing = forwardRef((props) => {
   }
 
   return getSuggestionsSoloList(list, styled)
-})
+}
 
 //
 const BlockIconItem = styled.div`
