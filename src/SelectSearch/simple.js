@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import styled from 'styled-components/macro'
 import Done from "./SearchIcon";
-import Dropdown from "./dropDown";
 import {Listing} from "./shared";
 import {ModuleInput} from "../Input";
 
@@ -18,7 +17,6 @@ const Simple = (props) => {
   const [showList, setShowList] = useState(false)
   const ListRef = useRef(null)
   const SearchRef = useRef(null)
-  const innerRef = useRef(null)
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutSide, false)
@@ -40,6 +38,7 @@ const Simple = (props) => {
     setShowList(false)
     onSelect(item, name)
   }
+
   const handleBlurInput = () => {
     onSelect(list[0], name)
   }
@@ -47,7 +46,7 @@ const Simple = (props) => {
 
   return (
     <StyledContainer styled={styled} ref={SearchRef}>
-      <ButtonSelect ref={innerRef} styled={styled} onClick={(e) => {
+      <ButtonSelect styled={styled} onClick={(e) => {
         setShowList(!showList)
       }}>
         <ButtonSpan styled={styled}>
@@ -58,7 +57,7 @@ const Simple = (props) => {
         </BlockIcon>
       </ButtonSelect>
       {showList && <List styled={styled}>
-        <BlockInput styled={styled} >
+        <BlockInput styled={styled}>
           <ModuleInput placeholder={placeholder}
                        styled={{padding: '10px 40px 10px 10px'}}
                        value={displayValue?.text || ''}
@@ -70,12 +69,12 @@ const Simple = (props) => {
             <IconArrow />
           </BlockIconInput>
         </BlockInput>
-        <Dropdown ref={innerRef} styled={styled}>
+        <Suggestion ref={ListRef} styled={styled} active={showList}>
           <Listing list={list}
                    styled={styled}
                    onSelect={handleClickItem}
                    displayValue={displayValue}/>
-        </Dropdown>
+        </Suggestion>
       </List>}
     </StyledContainer>
   )
@@ -162,4 +161,16 @@ const List = styled.div`
   top: 0;
   width: 100%;
   ${({styled}) => styled && styled.list ? styled.list  : ''}
+`;
+const Suggestion = styled.div`
+  width: 100%;
+  top: 130%;
+  padding: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  position: absolute;
+  z-index:  ${({active}) => active ? 10 : 1};
+  line-height: 13px;
+  background: #fff;
+  ${({styled}) => styled && styled.suggestion ? styled.suggestion : ''}
 `;
