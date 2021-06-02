@@ -90,7 +90,7 @@ const ListSelect = (props) => {
             <IconArrow />
           </BlockIconInput>
         </BlockInput>
-        <Suggestion ref={ListRef} styled={styled}>
+        <Suggestion ref={ListRef} active={showList} styled={styled}>
           <Listing list={result}
                    styled={styled}
                    onSelect={handleClickItem}
@@ -122,6 +122,9 @@ const BlockIconClose = styled.div`
     margin-right: 5px;
     &:hover {
         box-shadow: 0 0 1px 1px #111;
+    }
+    @media screen and (max-width: 700px){
+       opacity: 1;
     }
 `;
 const ButtonSelect = styled.div`
@@ -202,7 +205,7 @@ const Suggestion = styled.div`
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
   border-radius: 5px;
   position: absolute;
-  z-index: 1;
+  z-index: ${({active}) => active ? 10 : 1};
   line-height: 13px;
   background: #fff;
   ${({styled}) => styled && styled.suggestion ? styled.suggestion : ''}

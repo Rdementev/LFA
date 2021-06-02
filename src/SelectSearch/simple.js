@@ -52,7 +52,7 @@ const Simple = (props) => {
         <ButtonSpan styled={styled}>
           {displayValue ? displayValue.text : ''}
         </ButtonSpan>
-        <BlockIcon styled={styled}>
+        <BlockIcon styled={styled} >
           <IconArrow/>
         </BlockIcon>
       </ButtonSelect>
@@ -169,7 +169,7 @@ const Suggestion = styled.div`
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
   border-radius: 5px;
   position: absolute;
-  z-index:  ${({active}) => active ? 10 : 1};
+  z-index: ${({active}) => active ? 10 : 1};
   line-height: 13px;
   background: #fff;
   ${({styled}) => styled && styled.suggestion ? styled.suggestion : ''}

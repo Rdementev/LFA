@@ -9,7 +9,7 @@ export const Listing = (props) => {
     onSelect,
     displayValue,
   } = props
-debugger
+
   const getSuggestionsSoloList = (list, styled)=> {
     if (list.length < 1) return <ItemName styled={styled} style={{textAlign: 'center'}}>Данных нет</ItemName>
     return list.map(item => {
