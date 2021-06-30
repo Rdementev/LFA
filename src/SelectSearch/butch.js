@@ -4,6 +4,7 @@ import shortId from 'shortid'
 import Done from "./SearchIcon";
 import {Listing} from "./shared";
 import {ModuleInput} from "../Input";
+import DropdownModule from "../dropdown";
 
 const SelectButch = (props) => {
   const {
@@ -19,12 +20,16 @@ const SelectButch = (props) => {
   const [value, setValue] = useState('')
   const ListRef = useRef(null)
   const SearchRef = useRef(null)
+  const buttonRef = useRef(null)
+
 
   useEffect(() => {
     setValue(displayValue?.text)
     document.addEventListener('click', handleClickOutSide, false)
+    document.addEventListener('scroll', handleClickOutSide, false)
     return function () {
       document.removeEventListener('click', handleClickOutSide, false)
+      document.removeEventListener('scroll', handleClickOutSide, false)
     }
   }, [])
 
@@ -55,7 +60,7 @@ const SelectButch = (props) => {
 
   return (
     <StyledContainer styled={styled} ref={SearchRef}>
-      <ButtonSelect styled={styled} onClick={(e) => {
+      <ButtonSelect ref={buttonRef} styled={styled} onClick={(e) => {
         setShowList(!showList)
       }}>
         <ButtonSpan styled={styled}>
@@ -78,12 +83,15 @@ const SelectButch = (props) => {
             <IconArrow />
           </BlockIconInput>
         </BlockInput>
-        <Suggestion ref={ListRef} styled={styled}>
-          <Listing list={list}
-                   styled={styled}
-                   onSelect={handleClickItem}
-                   displayValue={displayValue}/>
-        </Suggestion>
+        <DropdownModule refButton={buttonRef}>
+          <Suggestion ref={ListRef} styled={styled}>
+            <Listing list={list}
+                     styled={styled}
+                     onSelect={handleClickItem}
+                     displayValue={displayValue}/>
+          </Suggestion>
+        </DropdownModule>
+
       </List>}
     </StyledContainer>
   )

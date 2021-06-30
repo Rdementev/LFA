@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import Done from "./SearchIcon";
 import {Listing} from "./shared";
 import {ModuleInput} from "../Input";
+import DropdownModule from "../dropdown";
 
 const Simple = (props) => {
   const {
@@ -15,13 +16,16 @@ const Simple = (props) => {
   } = props
 
   const [showList, setShowList] = useState(false)
+  const buttonRef = useRef(null)
   const ListRef = useRef(null)
   const SearchRef = useRef(null)
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutSide, false)
+    document.addEventListener('scroll', handleClickOutSide, false)
     return function () {
       document.removeEventListener('click', handleClickOutSide, false)
+      document.removeEventListener('scroll', handleClickOutSide, false)
     }
   }, [])
 
@@ -46,7 +50,7 @@ const Simple = (props) => {
 
   return (
     <StyledContainer styled={styled} ref={SearchRef}>
-      <ButtonSelect styled={styled} onClick={(e) => {
+      <ButtonSelect ref={buttonRef} styled={styled} onClick={(e) => {
         setShowList(!showList)
       }}>
         <ButtonSpan styled={styled}>
@@ -56,26 +60,31 @@ const Simple = (props) => {
           <IconArrow/>
         </BlockIcon>
       </ButtonSelect>
-      {showList && <List styled={styled}>
-        <BlockInput styled={styled}>
-          <ModuleInput placeholder={placeholder}
-                       styled={{padding: '10px 40px 10px 10px'}}
-                       value={displayValue?.text || ''}
-                       disabled={true}
-                       onBlur={(e)=>{handleBlurInput()}}/>
-          <BlockIconInput styled={styled}
-                          showList={showList}
-                          onClick={(e) => { setShowList(!showList)}}>
-            <IconArrow />
-          </BlockIconInput>
-        </BlockInput>
-        <Suggestion ref={ListRef} styled={styled} active={showList}>
-          <Listing list={list}
-                   styled={styled}
-                   onSelect={handleClickItem}
-                   displayValue={displayValue}/>
-        </Suggestion>
-      </List>}
+      {showList &&
+
+        <List styled={styled}>
+          <BlockInput styled={styled}>
+            <ModuleInput placeholder={placeholder}
+                         styled={{padding: '10px 40px 10px 10px'}}
+                         value={displayValue?.text || ''}
+                         disabled={true}
+                         onBlur={(e)=>{handleBlurInput()}}/>
+            <BlockIconInput styled={styled}
+                            showList={showList}
+                            onClick={(e) => { setShowList(!showList)}}>
+              <IconArrow />
+            </BlockIconInput>
+          </BlockInput>
+          <DropdownModule refButton={buttonRef}>
+          <Suggestion ref={ListRef} styled={styled} active={showList}>
+            <Listing list={list}
+                     styled={styled}
+                     onSelect={handleClickItem}
+                     displayValue={displayValue}/>
+          </Suggestion>
+          </DropdownModule>
+        </List>
+      }
     </StyledContainer>
   )
 }
@@ -163,14 +172,8 @@ const List = styled.div`
   ${({styled}) => styled && styled.list ? styled.list  : ''}
 `;
 const Suggestion = styled.div`
-  width: 100%;
-  top: 130%;
   padding: 10px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
-  border-radius: 5px;
-  position: absolute;
-  z-index: ${({active}) => active ? 10 : 1};
-  line-height: 13px;
   background: #fff;
   ${({styled}) => styled && styled.suggestion ? styled.suggestion : ''}
 `;
