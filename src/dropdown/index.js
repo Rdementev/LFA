@@ -1,9 +1,9 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {forwardRef, Fragment, useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import styled from 'styled-components/macro'
 
 
-const modalRoot = document.getElementById('modal')
+const dropdownRoot = document.getElementById('dropdown')
 
 const DropdownModule = ({children, refButton, styled = {}}) => {
   const [position, setPosition] = useState({})
@@ -12,7 +12,10 @@ const DropdownModule = ({children, refButton, styled = {}}) => {
     const item = refButton.current
     if(!item) return
     setPosition(item.getBoundingClientRect())
-
+    dropdownRoot.style.position = 'initial'
+    return function () {
+      dropdownRoot.style.position = 'absolute'
+    }
   }, [])
 
   return (
@@ -21,7 +24,7 @@ const DropdownModule = ({children, refButton, styled = {}}) => {
         <StyledModal styled={styled} scroll={window.pageYOffset} position={position}>
           {children}
         </StyledModal>,
-        modalRoot
+        dropdownRoot
       )}
     </Fragment>
   )

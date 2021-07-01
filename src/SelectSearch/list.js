@@ -28,7 +28,7 @@ const ListSelect = (props) => {
     setSearchKey(displayValue.text)
   },[])
 
-  useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
+  // useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
 
   useEffect(()=>{
     const res = list.filter(item => item && item.text.toLowerCase().includes(searchKey.toLowerCase()))

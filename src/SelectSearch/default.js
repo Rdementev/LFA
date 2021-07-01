@@ -23,7 +23,7 @@ const DefaultSelect = (props) => {
   const SearchRef = useRef(null)
   const buttonRef = useRef(null)
 
-  useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
+  // useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
 
 
   const handleClickItem = (item) => {

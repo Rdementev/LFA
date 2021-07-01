@@ -19,10 +19,8 @@ const Simple = (props) => {
   const [showList, setShowList] = useState(false)
   const buttonRef = useRef(null)
   const dropdownRef = useRef(null)
-  const ListRef = useRef(null)
-  const SearchRef = useRef(null)
 
-  useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
+  useOnClickOutside(dropdownRef, buttonRef, () => setShowList(false))
 
   const handleClickItem = (item) => {
     setShowList(false)
@@ -34,41 +32,41 @@ const Simple = (props) => {
   }
 
   return (
-    <StyledContainer styled={styled} ref={SearchRef}>
-      <ButtonSelect ref={buttonRef} styled={styled} onClick={(e) => {
+    <StyledContainer styled={styled}>
+      <ButtonSelect  styled={styled} onClick={(e) => {
         setShowList(!showList)
       }}>
         <ButtonSpan styled={styled}>
           {displayValue ? displayValue.text : ''}
         </ButtonSpan>
-        <BlockIcon styled={styled} >
+        <BlockIcon styled={styled}>
           <IconArrow/>
         </BlockIcon>
       </ButtonSelect>
       {showList &&
 
-        <List styled={styled}>
-          <BlockInput styled={styled}>
-            <ModuleInput placeholder={placeholder}
-                         styled={{padding: '10px 40px 10px 10px'}}
-                         value={displayValue?.text || ''}
-                         disabled={true}
-                         onBlur={(e)=>{handleBlurInput()}}/>
-            <BlockIconInput styled={styled}
-                            showList={showList}
-                            onClick={(e) => { setShowList(!showList)}}>
-              <IconArrow />
-            </BlockIconInput>
-          </BlockInput>
-          <DropdownModule ref={dropdownRef} refButton={buttonRef}>
-          <Suggestion ref={ListRef} styled={styled} active={showList}>
+      <List styled={styled}>
+        <BlockInput ref={buttonRef} styled={styled}>
+          <ModuleInput placeholder={placeholder}
+                       styled={{padding: '10px 40px 10px 10px'}}
+                       value={displayValue?.text || ''}
+                       disabled={true}
+                       onBlur={(e) => {handleBlurInput()}}/>
+          <BlockIconInput styled={styled}
+                          showList={showList}
+                          onClick={(e) => {setShowList(!showList)}}>
+            <IconArrow/>
+          </BlockIconInput>
+        </BlockInput>
+        <DropdownModule  refButton={buttonRef}>
+          <Suggestion styled={styled} ref={dropdownRef} active={showList}>
             <Listing list={list}
                      styled={styled}
                      onSelect={handleClickItem}
                      displayValue={displayValue}/>
           </Suggestion>
-          </DropdownModule>
-        </List>
+        </DropdownModule>
+      </List>
       }
     </StyledContainer>
   )
@@ -136,11 +134,10 @@ const BlockIcon = styled.div`
 `;
 
 
-
 const BlockInput = styled.div`
   position: relative;
   height: 36px;
-  ${({styled}) => styled && styled.blockInput ? styled.blockInput  : ''}
+  ${({styled}) => styled && styled.blockInput ? styled.blockInput : ''}
 `;
 const BlockIconInput = styled(BlockIcon)`
   position: absolute;
@@ -148,13 +145,13 @@ const BlockIconInput = styled(BlockIcon)`
   right: 10px;
   transition: ease 0.3s;
 
-  ${({styled}) => styled && styled.blockIconInput ? styled.blockIconInput  : ''}
+  ${({styled}) => styled && styled.blockIconInput ? styled.blockIconInput : ''}
 `;
 const List = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
-  ${({styled}) => styled && styled.list ? styled.list  : ''}
+  ${({styled}) => styled && styled.list ? styled.list : ''}
 `;
 const Suggestion = styled.div`
   padding: 10px;

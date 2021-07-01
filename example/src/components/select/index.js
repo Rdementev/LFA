@@ -5,8 +5,8 @@ import styled from 'styled-components/macro'
 
 const SelectContainer = (props) => {
   const [valueSimple, setValueSimple] = useState({id: 1, text: 'simple'})
-  const [valueList, setValueList] = useState({id: 1, text: 'list'})
-  const [valueButch, setValueButch] = useState({id: 1, text: 'butch'})
+  const [valueList, setValueList] = useState({id: 2, text: 'list'})
+  const [valueButch, setValueButch] = useState({id: 3, text: 'butch'})
 
 
   const handleSelectSimple = (item, name) => {
@@ -27,7 +27,7 @@ const SelectContainer = (props) => {
         <Title>
           simple select
         </Title>
-        <Select list={[{id:1, type: 'group', text: 'example', items: [{id:1, text: 'example'}, {id:2, text: 'example2'}, {id:3, text: 'example3'}]}]}
+        <Select list={[{id:1, type: 'group', text: 'example', items: [{id:4, text: 'example'}, {id:2, text: 'example2'}, {id:3, text: 'example3'}]}]}
                 onSelect={handleSelectSimple}
                 value={valueSimple}
                 type={'simple'}
