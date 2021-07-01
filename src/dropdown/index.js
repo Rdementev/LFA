@@ -35,6 +35,8 @@ const StyledModal = styled.div`
     left: ${({position}) => position ? position.x : ''}px;
     width: ${({position}) => position ? position.width : ''}px;
     z-index: 999;
+    box-shadow: 0 10px 15px -5px rgba(21,19,99,0.1);
+    border-radius: 4px;
 
     ${({styled}) => styled}
 `;
