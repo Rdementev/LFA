@@ -4,6 +4,7 @@ import Done from "./SearchIcon";
 import {Listing} from "./shared";
 import {ModuleInput} from "../Input";
 import DropdownModule from "../dropdown";
+import {useOnClickOutside} from "../utils/useClickOutside";
 
 const Simple = (props) => {
   const {
@@ -17,26 +18,11 @@ const Simple = (props) => {
 
   const [showList, setShowList] = useState(false)
   const buttonRef = useRef(null)
+  const dropdownRef = useRef(null)
   const ListRef = useRef(null)
   const SearchRef = useRef(null)
 
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutSide, false)
-    document.addEventListener('scroll', handleClickOutSide, false)
-    return function () {
-      document.removeEventListener('click', handleClickOutSide, false)
-      document.removeEventListener('scroll', handleClickOutSide, false)
-    }
-  }, [])
-
-  const handleClickOutSide = (e) => {
-    const item = SearchRef.current
-    if (e.path) {
-      if (!e.path.includes(item)) {
-        setShowList(false)
-      }
-    }
-  }
+  useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
 
   const handleClickItem = (item) => {
     setShowList(false)
@@ -46,7 +32,6 @@ const Simple = (props) => {
   const handleBlurInput = () => {
     onSelect(list[0], name)
   }
-
 
   return (
     <StyledContainer styled={styled} ref={SearchRef}>
@@ -75,7 +60,7 @@ const Simple = (props) => {
               <IconArrow />
             </BlockIconInput>
           </BlockInput>
-          <DropdownModule refButton={buttonRef}>
+          <DropdownModule ref={dropdownRef} refButton={buttonRef}>
           <Suggestion ref={ListRef} styled={styled} active={showList}>
             <Listing list={list}
                      styled={styled}
@@ -175,5 +160,6 @@ const Suggestion = styled.div`
   padding: 10px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
   background: #fff;
+  border-radius: 5px;
   ${({styled}) => styled && styled.suggestion ? styled.suggestion : ''}
 `;

@@ -5,6 +5,7 @@ import Done from "./SearchIcon";
 import {Listing} from "./shared";
 import CloseIcon from "./closeIcon";
 import DropdownModule from "../dropdown";
+import {useOnClickOutside} from "../utils/useClickOutside";
 
 const ListSelect = (props) => {
   const {
@@ -25,13 +26,9 @@ const ListSelect = (props) => {
 
   useEffect(() => {
     setSearchKey(displayValue.text)
-    document.addEventListener('click', handleClickOutSide, false)
-    document.addEventListener('scroll', handleClickOutSide, false)
-    return function () {
-      document.removeEventListener('click', handleClickOutSide, false)
-      document.removeEventListener('scroll', handleClickOutSide, false)
-    }
   },[])
+
+  useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
 
   useEffect(()=>{
     const res = list.filter(item => item && item.text.toLowerCase().includes(searchKey.toLowerCase()))
@@ -43,14 +40,6 @@ const ListSelect = (props) => {
     if(displayValue) setSearchKey(displayValue.text)
   },[displayValue])
 
-  const handleClickOutSide = (e) => {
-    const item = SearchRef.current
-    if (e.path) {
-      if (!e.path.includes(item)) {
-        setShowList(false)
-      }
-    }
-  }
 
   const handleClickItem = (item) => {
     setShowList(false)
@@ -206,14 +195,10 @@ const List = styled.div`
   ${({styled}) => styled && styled.list ? styled.list  : ''}
 `;
 const Suggestion = styled.div`
-  width: 100%;
-  top: 130%;
   padding: 10px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
   border-radius: 5px;
-  position: absolute;
   z-index: ${({active}) => active ? 10 : 1};
-  line-height: 13px;
   background: #fff;
   ${({styled}) => styled && styled.suggestion ? styled.suggestion : ''}
 `;

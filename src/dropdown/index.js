@@ -12,12 +12,13 @@ const DropdownModule = ({children, refButton}) => {
     const item = refButton.current
     if(!item) return
     setPosition(item.getBoundingClientRect())
+
   }, [])
 
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <StyledModal position={position}>
+        <StyledModal scroll={window.pageYOffset} position={position}>
           {children}
         </StyledModal>,
         modalRoot
@@ -29,11 +30,11 @@ const DropdownModule = ({children, refButton}) => {
 export default DropdownModule
 //
 const StyledModal = styled.div`
-    position: fixed;
-    top: ${({position}) => position ? position.y + position.height + 15 : ''}px ;
+    position: absolute;
+    top: ${({position, scroll}) => position ? position.y + position.height + 15 + scroll : ''}px ;
     left: ${({position}) => position ? position.x : ''}px;
     width: ${({position}) => position ? position.width : ''}px;
-    z-index: 1;
+    z-index: 999;
 `;
 
 

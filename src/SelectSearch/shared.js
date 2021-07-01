@@ -22,6 +22,7 @@ export const Listing = (props) => {
               {item.items.map(elem => {
                 return (
                   <ItemBlock styled={styled}
+                             key={item.id}
                              onClick={() => {onSelect(elem)}}
                              isActive={displayValue?.id === elem.id}>
                     {item.icon && <BlockIconItem styled={styled}>
