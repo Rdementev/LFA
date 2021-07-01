@@ -5,7 +5,7 @@ import ModuleSelectSearch from "./SelectSearch";
 import {ModuleInput} from "./Input";
 import ModuleSearchBlock from "./searchBlock";
 import ModuleActionButton from "./actionButton";
-import ModuleMenu from "./menu";
+import DropdownModule from "./dropdown";
 import * as Tabs from './Tabs'
 
 
@@ -64,7 +64,7 @@ export const ActionButton = (props) => {
                              title={title}/>
 }
 export const Dropdown = (props) => {
-  return <ModuleActionButton {...props}/>
+  return <DropdownModule {...props}/>
 }
 
 
