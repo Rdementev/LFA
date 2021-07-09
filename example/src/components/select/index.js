@@ -31,6 +31,7 @@ const SelectContainer = (props) => {
                 onSelect={handleSelectSimple}
                 value={valueSimple}
                 type={'simple'}
+                pos={'left'}
                 name={'simple'}/>
       </Item>
       <Item>
@@ -41,6 +42,7 @@ const SelectContainer = (props) => {
                 onSelect={handleSelectList}
                 value={valueList}
                 type={'list'}
+                pos={'left'}
                 name={'list'}/>
       </Item>
       <Item>
@@ -52,6 +54,7 @@ const SelectContainer = (props) => {
                 value={null}
                 defaultValue={{id:1, text: 'default'}}
                 type={'default'}
+                pos={'left'}
                 name={'default'}/>
       </Item>
       <Item>
@@ -62,6 +65,7 @@ const SelectContainer = (props) => {
                 onSelect={handleSelectButch}
                 value={valueButch}
                 type={'butch'}
+                pos={'right'}
                 name={'butch'}/>
       </Item>
     </Container>
@@ -71,11 +75,12 @@ const SelectContainer = (props) => {
 export default SelectContainer
 //
 const Container = styled.div`
-  max-width: 300px;
+  display: flex;
 `;
 const Title = styled.div`
   margin-bottom: 20px;
 `;
 const Item = styled.div`
   padding: 30px;
+  width: 100%;
 `;

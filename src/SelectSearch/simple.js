@@ -14,6 +14,7 @@ const Simple = (props) => {
     onSelect,
     name,
     placeholder,
+    pos,
   } = props
 
   const [showList, setShowList] = useState(false)
@@ -58,7 +59,7 @@ const Simple = (props) => {
             <IconArrow/>
           </BlockIconInput>
         </BlockInput>
-        <DropdownModule  refButton={buttonRef}>
+        <DropdownModule  refButton={buttonRef} pos={pos}>
           <Suggestion styled={styled} ref={dropdownRef} active={showList}>
             <Listing list={list}
                      styled={styled}

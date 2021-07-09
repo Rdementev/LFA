@@ -5,7 +5,7 @@ import styled from 'styled-components/macro'
 
 const dropdownRoot = document.getElementById('dropdown')
 
-const DropdownModule = ({children, refButton, styled = {}}) => {
+const DropdownModule = ({children, refButton, styled = {}, pos = 'left'}) => {
   const [position, setPosition] = useState({})
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const DropdownModule = ({children, refButton, styled = {}}) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <StyledModal styled={styled} scroll={window.pageYOffset} position={position}>
+        <StyledModal styled={styled} window={window} position={position} pos={pos}>
           {children}
         </StyledModal>,
         dropdownRoot
@@ -34,8 +34,9 @@ export default DropdownModule
 //
 const StyledModal = styled.div`
     position: absolute;
-    top: ${({position, scroll}) => position ? position.y + position.height + 15 + scroll : ''}px ;
-    left: ${({position}) => position ? position.x : ''}px;
+    top: ${({position, window}) => position ? position.y + position.height + 15 + window.pageYOffset : ''}px ;
+    left: ${({position, pos}) => position && pos === 'left' ? position.x : ''}px;
+    right: ${({position, pos, window}) => position && pos === 'right' ? window.innerWidth  - position.x - position.width: ''}px;
     width: ${({position}) => position ? position.width : ''}px;
     z-index: 999;
     box-shadow: 0 10px 15px -5px rgba(21,19,99,0.1);

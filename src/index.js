@@ -31,7 +31,7 @@ export const Select = (props) => {
                              defaultValue={defaultValue}
                              name={name}
                              type={type}
-                             placeholder={placeholder}/>
+                             placeholder={placeholder} {...props}/>
 }
 export const Input = (props) => {
   const {styled} = props

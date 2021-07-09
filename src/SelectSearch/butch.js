@@ -15,8 +15,8 @@ const SelectButch = (props) => {
     onSelect,
     name,
     placeholder,
+    pos,
   } = props
-
   const [showList, setShowList] = useState(false)
   const [value, setValue] = useState('')
   const ListRef = useRef(null)
@@ -70,7 +70,7 @@ const SelectButch = (props) => {
             <IconArrow />
           </BlockIconInput>
         </BlockInput>
-        <DropdownModule refButton={buttonRef}>
+        <DropdownModule refButton={buttonRef} pos={pos}>
           <Suggestion ref={ListRef} styled={styled}>
             <Listing list={list}
                      styled={styled}

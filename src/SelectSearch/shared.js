@@ -8,6 +8,7 @@ export const Listing = (props) => {
     styled,
     onSelect,
     displayValue,
+
   } = props
 
   const getSuggestionsSoloList = (list, styled)=> {
