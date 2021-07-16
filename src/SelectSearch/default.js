@@ -20,11 +20,11 @@ const DefaultSelect = (props) => {
   } = props
 
   const [showList, setShowList] = useState(false)
-  const ListRef = useRef(null)
-  const SearchRef = useRef(null)
+  const listRef = useRef(null)
+  const searchRef = useRef(null)
   const buttonRef = useRef(null)
 
-  // useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
+  useOnClickOutside(searchRef, buttonRef, ()=> setShowList(false))
 
 
   const handleClickItem = (item) => {
@@ -41,7 +41,7 @@ const DefaultSelect = (props) => {
 
 
   return (
-    <StyledContainer styled={styled} ref={SearchRef}>
+    <StyledContainer styled={styled} ref={searchRef}>
       <ButtonSelect ref={buttonRef} styled={styled} onClick={(e) => {
         setShowList(!showList)
       }}>
@@ -73,7 +73,7 @@ const DefaultSelect = (props) => {
           </BlockIconInput>
         </BlockInput>
         <DropdownModule refButton={buttonRef} pos={pos}>
-          <Suggestion ref={ListRef} active={showList} styled={styled}>
+          <Suggestion ref={listRef} active={showList} styled={styled}>
             <Listing list={list}
                      styled={styled}
                      onSelect={handleClickItem}

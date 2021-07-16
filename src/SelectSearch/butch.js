@@ -19,8 +19,8 @@ const SelectButch = (props) => {
   } = props
   const [showList, setShowList] = useState(false)
   const [value, setValue] = useState('')
-  const ListRef = useRef(null)
-  const SearchRef = useRef(null)
+  const listRef = useRef(null)
+  const searchRef = useRef(null)
   const buttonRef = useRef(null)
 
 
@@ -28,7 +28,7 @@ const SelectButch = (props) => {
     setValue(displayValue?.text)
   }, [])
 
-  // useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
+  useOnClickOutside(searchRef, buttonRef, ()=> setShowList(false))
 
   useEffect(() => {
     if (displayValue) setValue(displayValue.text)
@@ -46,7 +46,7 @@ const SelectButch = (props) => {
 
 
   return (
-    <StyledContainer styled={styled} ref={SearchRef}>
+    <StyledContainer styled={styled} ref={searchRef}>
       <ButtonSelect ref={buttonRef} styled={styled} onClick={(e) => {
         setShowList(!showList)
       }}>
@@ -71,7 +71,7 @@ const SelectButch = (props) => {
           </BlockIconInput>
         </BlockInput>
         <DropdownModule refButton={buttonRef} pos={pos}>
-          <Suggestion ref={ListRef} styled={styled}>
+          <Suggestion ref={listRef} styled={styled}>
             <Listing list={list}
                      styled={styled}
                      onSelect={handleClickItem}

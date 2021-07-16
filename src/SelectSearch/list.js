@@ -21,15 +21,15 @@ const ListSelect = (props) => {
   const [showList, setShowList] = useState(false)
   const [result, setResult] = useState([])
   const [searchKey, setSearchKey] = useState('')
-  const ListRef = useRef(null)
-  const SearchRef = useRef(null)
+  const listRef = useRef(null)
+  const searchRef = useRef(null)
   const buttonRef = useRef(null)
 
   useEffect(() => {
     setSearchKey(displayValue.text)
   },[])
 
-  // useOnClickOutside(SearchRef, buttonRef, ()=> setShowList(false))
+  useOnClickOutside(searchRef, buttonRef, ()=> setShowList(false))
 
   useEffect(()=>{
     const res = list.filter(item => item && item.text.toLowerCase().includes(searchKey.toLowerCase()))
@@ -55,7 +55,7 @@ const ListSelect = (props) => {
 
 
   return (
-    <StyledContainer styled={styled} ref={SearchRef}>
+    <StyledContainer styled={styled} ref={searchRef}>
       <ButtonSelect ref={buttonRef} styled={styled} onClick={(e) => { setShowList(!showList)}} >
         <ButtonSpan styled={styled}>
           {displayValue ? displayValue.text : ''}
@@ -85,7 +85,7 @@ const ListSelect = (props) => {
           </BlockIconInput>
         </BlockInput>
         <DropdownModule refButton={buttonRef} pos={pos}>
-          <Suggestion ref={ListRef} active={showList} styled={styled}>
+          <Suggestion ref={listRef} active={showList} styled={styled}>
             <Listing list={result}
                      styled={styled}
                      onSelect={handleClickItem}
