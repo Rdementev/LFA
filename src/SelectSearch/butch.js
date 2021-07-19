@@ -16,6 +16,7 @@ const SelectButch = (props) => {
     name,
     placeholder,
     pos,
+    innerRef,
   } = props
   const [showList, setShowList] = useState(false)
   const [value, setValue] = useState('')
@@ -70,7 +71,7 @@ const SelectButch = (props) => {
             <IconArrow />
           </BlockIconInput>
         </BlockInput>
-        <DropdownModule refButton={buttonRef} pos={pos}>
+        <DropdownModule refButton={buttonRef} innerRef={innerRef} pos={pos}>
           <Suggestion ref={listRef} styled={styled}>
             <Listing list={list}
                      styled={styled}

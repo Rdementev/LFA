@@ -17,6 +17,7 @@ const DefaultSelect = (props) => {
     defaultValue,
     placeholder,
     pos,
+    innerRef,
   } = props
 
   const [showList, setShowList] = useState(false)
@@ -72,7 +73,7 @@ const DefaultSelect = (props) => {
             <IconArrow />
           </BlockIconInput>
         </BlockInput>
-        <DropdownModule refButton={buttonRef} pos={pos}>
+        <DropdownModule refButton={buttonRef} innerRef={innerRef} pos={pos}>
           <Suggestion ref={listRef} active={showList} styled={styled}>
             <Listing list={list}
                      styled={styled}

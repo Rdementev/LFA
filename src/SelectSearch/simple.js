@@ -15,6 +15,7 @@ const Simple = (props) => {
     name,
     placeholder,
     pos,
+    innerRef,
   } = props
 
   const [showList, setShowList] = useState(false)
@@ -59,7 +60,7 @@ const Simple = (props) => {
             <IconArrow/>
           </BlockIconInput>
         </BlockInput>
-        <DropdownModule  refButton={buttonRef} pos={pos}>
+        <DropdownModule  refButton={buttonRef} innerRef={innerRef} pos={pos}>
           <Suggestion styled={styled} ref={dropdownRef} active={showList}>
             <Listing list={list}
                      styled={styled}
