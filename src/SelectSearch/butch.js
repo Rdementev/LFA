@@ -21,7 +21,6 @@ const SelectButch = (props) => {
   const [showList, setShowList] = useState(false)
   const [value, setValue] = useState('')
   const listRef = useRef(null)
-  const searchRef = useRef(null)
   const buttonRef = useRef(null)
 
 
@@ -29,7 +28,7 @@ const SelectButch = (props) => {
     setValue(displayValue?.text)
   }, [])
 
-  useOnClickOutside(searchRef, buttonRef, ()=> setShowList(false))
+  useOnClickOutside(listRef, buttonRef, ()=> setShowList(false))
 
   useEffect(() => {
     if (displayValue) setValue(displayValue.text)

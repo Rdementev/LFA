@@ -60,7 +60,7 @@ const Simple = (props) => {
             <IconArrow/>
           </BlockIconInput>
         </BlockInput>
-        <DropdownModule  refButton={buttonRef} innerRef={innerRef} pos={pos}>
+        <DropdownModule  refButton={buttonRef} pos={pos}>
           <Suggestion styled={styled} ref={dropdownRef} active={showList}>
             <Listing list={list}
                      styled={styled}

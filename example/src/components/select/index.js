@@ -7,6 +7,7 @@ const SelectContainer = (props) => {
   const [valueSimple, setValueSimple] = useState({id: 1, text: 'simple'})
   const [valueList, setValueList] = useState({id: 2, text: 'list'})
   const [valueButch, setValueButch] = useState({id: 3, text: 'butch'})
+  const [valueDefault, setValueDefault] = useState({id: 3, text: 'default'})
 
 
   const handleSelectSimple = (item, name) => {
@@ -18,6 +19,9 @@ const SelectContainer = (props) => {
   }
   const handleSelectButch = (item, name) => {
     setValueButch(item)
+  }
+  const handleSelectDefault = (item, name) => {
+    setValueDefault(item)
   }
 
 
@@ -50,12 +54,14 @@ const SelectContainer = (props) => {
           default select
         </Title>
         <Select list={[{id:1, text: 'example'}, {id:2, text: 'example2'}, {id:3, text: 'example3'}]}
-                onSelect={handleSelectList}
-                value={null}
+                onSelect={handleSelectDefault}
+                value={valueDefault}
                 defaultValue={{id:1, text: 'default'}}
                 type={'default'}
                 pos={'left'}
                 name={'default'}/>
+
+
       </Item>
       <Item>
         <Title>
