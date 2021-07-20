@@ -46,7 +46,7 @@ const SelectButch = (props) => {
 
 
   return (
-    <StyledContainer styled={styled} ref={searchRef}>
+    <StyledContainer styled={styled}>
       <ButtonSelect ref={buttonRef} styled={styled} onClick={(e) => {
         setShowList(!showList)
       }}>
